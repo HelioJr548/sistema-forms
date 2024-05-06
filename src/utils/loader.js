@@ -24,4 +24,24 @@ function loadViews(app) {
 	});
 }
 
-module.exports = { loadRoutes, loadViews };
+function loadModels(connection) {
+	const models = [];
+
+	// Carrega dinamicamente todos os modelos
+	fastGlob
+		.sync('**/*.js', { cwd: path.join(__dirname, '../models') })
+		.forEach((file) => {
+			const model = require(path.resolve(__dirname, '../models', file));
+			model.init(connection);
+			models.push(model); // Armazena a instância do modelo
+		});
+
+	// Configura as associações após a inicialização de todos os modelos
+	models.forEach((model) => {
+		if (model.associate) {
+			model.associate(connection.models);
+		}
+	});
+}
+
+module.exports = { loadRoutes, loadViews, loadModels };
