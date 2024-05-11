@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 // // Carrega dinamicamente as rotas e os arquivos HTML
 loadRoutes(app);
-loadViews(app);
+loadViews(app, express);
 
 app.listen(PORT, () => {
 	console.log(`Servidor rodando na porta ${PORT}`);

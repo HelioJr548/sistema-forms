@@ -14,7 +14,7 @@ function loadRoutes(app) {
 }
 
 // Função para carregar dinamicamente os arquivos HTML
-function loadViews(app) {
+function loadViews(app, express) {
 	const views = fastGlob.sync('**/*.html', {
 		cwd: path.join(__dirname, '..', 'views'),
 	});
