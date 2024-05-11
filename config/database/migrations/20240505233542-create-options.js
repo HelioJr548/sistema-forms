@@ -10,6 +10,13 @@ module.exports = {
 				autoIncrement: true,
 				primaryKey: true,
 			},
+			form_id: {
+				type: Sequelize.INTEGER,
+				allowNull: false,
+				references: { model: 'forms', key: 'id' },
+				onDelete: 'CASCADE',
+				onUpdate: 'CASCADE',
+			},
 			question_id: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
