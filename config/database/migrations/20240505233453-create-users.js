@@ -28,10 +28,10 @@ module.exports = {
 				type: Sequelize.TEXT,
 				allowNull: false,
 			},
-			type: {
+			role: {
 				type: Sequelize.TEXT,
 				allowNull: false,
-				defaultValue: 'entrevistador',
+				defaultValue: 'user',
 			},
 			created_at: {
 				type: Sequelize.DATE,
