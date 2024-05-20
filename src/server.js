@@ -1,16 +1,19 @@
 require('../config/database');
 const express = require('express');
+const cors = require('cors');
 const { loadRoutes, loadViews } = require('./utils/loader');
 const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware para fazer o parsing do corpo da solicitação JSON
-app.use(express.json());
-
-// Middleware para fazer o parsing de cookies
-app.use(cookieParser());
+const corsOptions = {
+	origin: process.env.CORS,
+};
+app.use(cors(corsOptions));
+app.use(express.json()); // Parse JSON requests
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded requests
+app.use(cookieParser()); // Parse cookies
 
 // // Carrega dinamicamente as rotas e os arquivos HTML
 loadRoutes(app);
